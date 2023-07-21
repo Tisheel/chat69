@@ -5,7 +5,7 @@ import JoinRoom from './JoinRoom'
 import Room from './Room'
 
 function App() {
-  const socket = io("/")
+  const socket = io(REACT_APP_URL)
 
   return (
     <Routes>
