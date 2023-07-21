@@ -11,11 +11,7 @@ app.use(cors())
 const PORT = process.env.PORT || 8081
 
 const httpServer = createServer(app)
-const io = new Server(httpServer, {
-    cors: {
-        origin: process.env.URL
-    }
-})
+const io = new Server(httpServer)
 
 const users = {}
 
