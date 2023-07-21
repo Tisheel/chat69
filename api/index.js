@@ -6,25 +6,19 @@ const path = require("path")
 
 const app = express()
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8081
 
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
     cors: {
-        origin: 'http://localhost:3000'
+        origin: process.env.URL
     }
 })
 
 const users = {}
 
-app.use(express.static(path.join(__dirname, "app", "build")))
-app.use((req, res, next) => {
-    res.status(404).send(
-        "<span>Page not found go to </span><a href='/'>home</a>")
-})
-
 app.get("/", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "app", "build", "index.html"))
+    res.redirect(process.env.URL)
 })
 
 io.on("connection", (socket) => {

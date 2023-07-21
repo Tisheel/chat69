@@ -97,6 +97,16 @@ body {
     flex-direction: column;
 }
 
+#join-room-main span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#join-room-main span a {
+    color: white;
+}
+
 #join-room-main h1 {
     font-size: 5rem;
     color: white;

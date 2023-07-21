@@ -29,12 +29,15 @@ const JoinRoom = () => {
 
   return (
     <div id="join-room-main">
-      <h1>Chat69</h1>
-      <form id="join-form" onSubmit={join}>
-        <input type="text" placeholder="your name" onChange={(e) => setName(e.target.value)} value={name} />
-        <input type="text" placeholder="room" onChange={(e) => setRoom(e.target.value)} value={room} />
-        <input type="submit" />
-      </form>
+      <div>
+        <h1>Chat69</h1>
+        <form id="join-form" onSubmit={join}>
+          <input type="text" placeholder="your name" onChange={(e) => setName(e.target.value)} value={name} />
+          <input type="text" placeholder="room" onChange={(e) => setRoom(e.target.value)} value={room} />
+          <input type="submit" />
+        </form>
+      </div>
+      <span>developed by <a href="https://www.linkedin.com/in/tisheel-bashyam/">tisheel</a></span>
     </div>
   )
 }
