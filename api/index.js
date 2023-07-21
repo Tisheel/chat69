@@ -2,9 +2,11 @@ require('dotenv').config()
 const express = require("express")
 const { createServer } = require("http")
 const { Server } = require("socket.io")
-const path = require("path")
+const cors = require('cors')
 
-const app = express()
+const app = express(cors())
+
+app.use()
 
 const PORT = process.env.PORT || 8081
 
