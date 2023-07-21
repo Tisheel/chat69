@@ -19,10 +19,6 @@ const io = new Server(httpServer, {
 
 const users = {}
 
-app.get("/", (req, res) => {
-    res.redirect(process.env.URL)
-})
-
 io.on("connection", (socket) => {
     socket.on('join-room', (req) => {
         socket.join(req.roomId)
