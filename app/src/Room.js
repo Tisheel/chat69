@@ -1,7 +1,8 @@
+import './Room.css'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
-
+import { useNavigate } from 'react-router-dom'
 
 const Room = ({ socket }) => {
 
@@ -9,6 +10,8 @@ const Room = ({ socket }) => {
   const { roomId, name } = useParams()
   const [message, setMessage] = useState('')
   const [receivedMessages, setReceivedMessages] = useState([])
+
+  const navigator = useNavigate()
 
   useEffect(() => {
     socket.emit('join-room', { roomId, name })
@@ -24,8 +27,7 @@ const Room = ({ socket }) => {
     })
   }, [socket])
 
-  function sendMessage(e) {
-    e.preventDefault()
+  function sendMessage() {
     if (message === '') {
       return alert('Are you dumb 😶')
     }
@@ -33,47 +35,50 @@ const Room = ({ socket }) => {
     setMessage('')
   }
 
+  function leaveRoom() {
+    socket.emit('leave-room', roomId)
+    navigator('/')
+  }
+
   return (
     <div>
-      <div id='head'>
+      <header>
         <div>
-          <h1>Room: {roomId}</h1>
+          <h1>{roomId}</h1>
           <div id='members'>
-            Members:{
+            {
               members.map((member, index) => {
                 return <span key={index}> {member}</span>
               })
             }
           </div>
         </div>
-        <div>
+        <div id='tasks'>
           <CopyToClipboard text={window.location.origin + "?roomId=" + roomId}>
             <button id='copy'>&#128203;<span>copy</span></button>
           </CopyToClipboard>
+          <button onClick={() => leaveRoom()}>Leave</button>
         </div>
-      </div>
-      <div id='main'>
-
+      </header>
+      <section id='chats'>
         {
-          <div id='container'>
-            {
-              receivedMessages.length !== 0 && receivedMessages.map((message, index) => {
-                return <div className='message' key={index} style={message.id === socket.id ? { marginLeft: '50%', backgroundColor: '#22d3ee' } : { marginRight: '50%' }}>
-                  <div className='message-head'>
-                    <label>{message.author}</label>
-                    <span>{message.time}</span>
-                  </div>
-                  <p>{message.message}</p>
-                </div>
-              })
-            }
-          </div>
+          receivedMessages.length === 0 ?
+            <strong>Start conversation...</strong>
+            : receivedMessages.map((message, index) => {
+              return <div id='chat' key={index} style={message.id === socket.id ? { alignSelf: 'flex-end', borderTopRightRadius: '0px' } : { alignSelf: 'flex-start', borderTopLeftRadius: '0px' }}>
+                <label>{message.author}</label>
+                <article>{message.message}</article>
+                <time>{message.time}</time>
+              </div>
+            })
         }
-        <form id='send-message' onSubmit={sendMessage}>
+      </section>
+      <footer>
+        <div id='send-message'>
           <input type='text' value={message} placeholder='message' onChange={(e) => setMessage(e.target.value)} />
-          <input type='submit' value='send' />
-        </form>
-      </div>
+          <button onClick={() => sendMessage()}>send</button>
+        </div>
+      </footer>
     </div >
   )
 }

@@ -1,0 +1,101 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    color: white;
+    background: #475569;
+    z-index: 10;
+}
+
+#members {
+    width: 50vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#tasks {
+    display: flex;
+    gap: 10px;
+}
+
+#tasks button {
+    cursor: pointer;
+}
+
+#chats {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    overflow-y: auto;
+    margin-bottom: 70px;
+}
+
+strong {
+    color: white;
+}
+
+#chat {
+    background-color: white;
+    color: black;
+    padding: 2px;
+    min-width: 20vw;
+    max-width: 60vw;
+    border-radius: 10px;
+    margin: 10px;
+    word-wrap: break-word;
+}
+
+#chat label {
+    font-size: x-large;
+}
+
+#chat article {
+    font-size: large;
+    font-weight: 500;
+}
+
+#chat time {
+    font-size: x-small;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    background-color: #475569;
+}
+
+#send-message {
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+#send-message input {
+    height: 25px;
+    width: 80vw;
+    padding: 5px;
+    outline: none;
+    border: none;
+}
+
+#send-message button {
+    height: 36px;
+    padding: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
