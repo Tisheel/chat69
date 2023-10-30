@@ -31,7 +31,8 @@ const Room = ({ socket }) => {
     if (message === '') {
       return alert('Are you dumb 😶')
     }
-    socket.emit('send-message', { message, roomId })
+    const time = ((new Date().getHours() < 10) ? "0" : "") + new Date().getHours() + ":" + ((new Date().getMinutes() < 10) ? "0" : "") + new Date().getMinutes()
+    socket.emit('send-message', { message, roomId, time })
     setMessage('')
   }
 
@@ -75,7 +76,7 @@ const Room = ({ socket }) => {
       </section>
       <footer>
         <div id='send-message'>
-          <input type='text' value={message} placeholder='message' onChange={(e) => setMessage(e.target.value)} />
+          <textarea value={message} placeholder='message' onChange={(e) => setMessage(e.target.value)}></textarea>
           <button onClick={() => sendMessage()}>send</button>
         </div>
       </footer>

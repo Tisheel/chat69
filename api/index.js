@@ -39,8 +39,7 @@ io.on("connection", (socket) => {
     })
 
     socket.on('send-message', (req) => {
-        const time = new Date().getHours().toString() + ':' + new Date().getMinutes().toString()
-        io.sockets.to(req.roomId).emit('receive-message', { message: req.message, time, author: users[socket.id], id: socket.id })
+        io.sockets.to(req.roomId).emit('receive-message', { message: req.message, time: req.time, author: users[socket.id], id: socket.id })
     })
 
     socket.on('leave-room', (roomId) => {
