@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import toast from "react-hot-toast"
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 const JoinRoom = () => {
@@ -18,39 +19,47 @@ const JoinRoom = () => {
   function join(e) {
     e.preventDefault()
 
-    if (name === '' || room === '') {
-      return alert('Are you dumb 😶')
-    }
     if (name.length < 5) {
-      return alert('You dumb 😶 name too short')
+      return toast('You dumb 😶 name too short')
     }
     if (room.length < 6) {
-      return alert('You dumb 😶 room too short')
+      return toast('You dumb 😶 room too short')
     }
     if (room.includes(' ') || name.includes(' ')) {
-      return alert('You dumb 😶 room or name should not have space')
+      return toast('You dumb 😶 room or name should not have space')
     }
 
     navigate(`/room/${room}/${name}`)
   }
 
   return (
-    <div>
-      <header>
-        <h1>Chat69</h1>
-      </header>
-      <section id='main'>
-        <form id="join-form" onSubmit={join}>
-          <input type="text" placeholder="your name" onChange={(e) => setName(e.target.value)} value={name} />
-          <input type="text" placeholder="room" onChange={(e) => setRoom(e.target.value)} value={room} />
-          <input type="submit" />
+    <div className='flex flex-col items-center justify-center h-screen bg-gray-700 text-white'>
+      <div className='flex flex-col items-center'>
+        <div className='flex flex-col text-center font-mono mb-5 gap-2'>
+            <span className="text-6xl">Chat 69</span>
+            <span className='font-bold text-xl'>Enter the code to join</span>
+            <span className='font-extralight text-sm'>it's amoung you...</span>
+        </div>
+        <form className='font-mono w-full mb-5' onSubmit={join}>
+          <div>
+            <input className='border-2 p-2 rounded-lg w-full text-black' type='text' value={room} placeholder='1234-5678' onChange={(e) => setRoom(e.target.value)} required />
+          </div>
+          <div className='mt-4 mb-4'>
+            <label className='font-bold text-xs'>Enter your name</label>
+            <div>
+              <input className='border-2 p-2 rounded-lg w-full text-black' type='text' value={name} placeholder="Jhon Doe" onChange={(e) => setName(e.target.value)} required />
+            </div>
+          </div>
+          <div className='flex justify-center'>
+            <button className='bg-black text-white font-bold text-sm p-2 rounded-xl cursor-pointer'>
+              Join Chat
+            </button>
+          </div>
         </form>
-      </section>
-      <footer>
-        <p>
-          developed by <a href="https://www.linkedin.com/in/tisheel-bashyam/">tisheel</a>
-        </p>
-      </footer>
+        <div>
+        <span className='font-extralight text-sm font-mono'>crafted by <a href="https://www.linkedin.com/in/tisheel-bashyam/" target="_blank">tisheel</a></span>
+        </div>
+      </div>
     </div>
   )
 }
