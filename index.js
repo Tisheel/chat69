@@ -21,10 +21,10 @@ const io = new Server(httpServer, {
 
 const users = {}
 
-app.use(express.static(path.join(__dirname, 'build')))
+app.use(express.static(path.join(__dirname, '/app/build')))
 
 app.use('/', (req, res, next) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+    res.sendFile(path.join(__dirname, 'app', 'build', 'index.html'))
 })
 
 io.on("connection", (socket) => {
