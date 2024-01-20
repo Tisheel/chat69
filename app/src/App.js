@@ -6,7 +6,7 @@ import Room from './Room'
 import { Toaster } from 'react-hot-toast'
 
 function App() {
-  const socket = io(process.env.REACT_APP_URL)
+  const socket = io()
 
   return (
     <>
