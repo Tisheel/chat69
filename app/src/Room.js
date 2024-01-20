@@ -1,4 +1,3 @@
-import './Room.css'
 import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
