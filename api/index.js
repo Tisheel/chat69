@@ -3,6 +3,7 @@ const express = require("express")
 const { createServer } = require("http")
 const { Server } = require("socket.io")
 const cors = require('cors')
+const path = require('path')
 
 const app = express()
 
@@ -13,15 +14,17 @@ const PORT = process.env.PORT || 8081
 const httpServer = createServer(app)
 const io = new Server(httpServer, {
     cors: {
-        origin: process.env.URL || '*',
+        origin: '*',
         methods: ['GET', 'POST']
     }
 })
 
 const users = {}
 
-app.get('/', (req, res) => {
-    res.redirect(process.env.URL)
+app.use(express.static(path.join(__dirname, 'build')))
+
+app.use('/', (req, res, next) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 io.on("connection", (socket) => {
