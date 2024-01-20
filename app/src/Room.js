@@ -57,7 +57,7 @@ const Room = ({ socket }) => {
               <span>{members.length}</span>
             </div>
             <div>
-              <IoClose size={25} onClick={() => setShowMembers(false)} />
+              <IoClose className='cursor-pointer' size={25} onClick={() => setShowMembers(false)} />
             </div>
           </div>
           {
@@ -74,7 +74,7 @@ const Room = ({ socket }) => {
         showMenu ?
           <div className='absolute w-full h-screen z-10 bg-white shadow-lg text-black flex flex-col p-2'>
             <div className='flex justify-end my-2'>
-              <IoClose size={25} onClick={() => setShowMenu(false)} />
+              <IoClose className='cursor-pointer' size={25} onClick={() => setShowMenu(false)} />
             </div>
             <span className='text-black font-bold text-sm p-5 cursor-pointer border-y-2' onClick={() => {
               setShowMembers(true)
@@ -93,7 +93,7 @@ const Room = ({ socket }) => {
             <FaCircle size={15} className='text-green-600 animate-pulse' />
           </div>
           <span onClick={() => setShowMenu(true)}>
-            <IoMenu size={25} />
+            <IoMenu className='cursor-pointer' size={25} />
           </span>
         </div>
         <div className='h-full flex flex-col overflow-y-auto' id='chats' >
