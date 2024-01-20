@@ -27,6 +27,11 @@ app.use('/', (req, res, next) => {
     res.sendFile(path.join(__dirname, 'app', 'build', 'index.html'))
 })
 
+app.get('*', function (req, res) {
+    res.status(404).send('Page not found go back to <a href="/">home</a>')
+})
+
+
 io.on("connection", (socket) => {
 
     socket.on('join-room', (req) => {
