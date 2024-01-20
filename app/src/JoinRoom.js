@@ -36,9 +36,9 @@ const JoinRoom = () => {
     <div className='flex flex-col items-center justify-center h-screen bg-gray-700 text-white'>
       <div className='flex flex-col items-center'>
         <div className='flex flex-col text-center font-mono mb-5 gap-2'>
-            <span className="text-6xl">Chat 69</span>
-            <span className='font-bold text-xl'>Enter the code to join</span>
-            <span className='font-extralight text-sm'>it's amoung you...</span>
+          <span className="text-6xl">Chat 69</span>
+          <span className='font-bold text-xl'>Enter the code to join</span>
+          <span className='font-extralight text-sm'>it's amoung you...</span>
         </div>
         <form className='font-mono w-full mb-5' onSubmit={join}>
           <div>
@@ -57,7 +57,7 @@ const JoinRoom = () => {
           </div>
         </form>
         <div>
-        <span className='font-extralight text-sm font-mono'>crafted by <a href="https://www.linkedin.com/in/tisheel-bashyam/" target="_blank">tisheel</a></span>
+          <span className='font-extralight text-sm font-mono'>crafted by <a href="https://www.linkedin.com/in/tisheel-bashyam/" target="_blank">tisheel</a></span>
         </div>
       </div>
     </div>
